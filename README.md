@@ -15,7 +15,7 @@
 git clone https://github.com/mcrrobinson/RGB-audio-peak-visualiser.git
 ```
 <p>2. Install depdencenies.</p>
-```bash
+``` bash
 pip install -r requirements.txt
 ```
 <p>3. Adjust the configuration as you wish.</p>
