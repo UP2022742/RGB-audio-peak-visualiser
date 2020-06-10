@@ -1,4 +1,4 @@
-<h1 style="color: red;">RGB Audio Peak Visuliser</h1>
+# RGB Audio Peak Visuliser</h1>
 <p>A python application that loopbacks the playback output to create a visualiser with RGB strips.</p>
 
 <h1>Requirements</h1>
