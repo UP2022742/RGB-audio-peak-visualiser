@@ -11,15 +11,18 @@
 <h1>Usage</h1>
 <h3>Host</h3>
 <p>1. Clone the repo or download as zip and extract the files.</p>
-```bash
+```
+bash
 git clone https://github.com/mcrrobinson/RGB-audio-peak-visualiser.git
 ```
 <p>2. Install depdencenies.</p>
-``` bash
+```
+bash
 pip install -r requirements.txt
 ```
 <p>3. Adjust the configuration as you wish.</p>
-```yaml
+```
+yaml
 # Regards the output stream.
 stream:
 
