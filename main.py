@@ -49,6 +49,9 @@ class GetAudio:
         device_selection : Takes the users input
         and converts it to an integer so it can
         be validated against.
+
+        rpc_stream : the configuration in which the
+        rpc stream is set.
     """
     def __init__(self):
         self.p = pyaudio.PyAudio()
@@ -60,6 +63,7 @@ class GetAudio:
         self.protocol = cfg["RPC"]["protocol"]
         self.chunk = cfg["stream"]["CHUNK"]
         self.device_selection = ""
+        self.rpc_stream = 0
 
     def signal_handler(self, sig, frame):
         """ Graceful shutdown.
