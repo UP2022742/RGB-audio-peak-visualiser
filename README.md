@@ -21,8 +21,8 @@ pip install -r requirements.txt
 <p>3. Adjust the configuration as you wish.</p>
 <pre>
 // Regards the output stream.
-stream:
-
+stream:  
+  
   // Recorder information.
   defaultframes: 512
 
@@ -73,15 +73,15 @@ pip install -r requirements.txt
 </pre>
 <p>3. Adjust the configuration as you wish.</p>
 <pre>
-# Regards the output stream.
-stream:
-
+// Regards the output stream.
+stream:  
+  
   // Recorder information.
   defaultframes: 512
-
+  
   // Determined by the output Hz by your chosen sample rate.
   CHUNK: 2048
-
+  
 ...
 </pre>
 <p>4. Open a terminal and run the application.</p>
