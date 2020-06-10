@@ -5,6 +5,8 @@ import zmq
 import asyncio
 import aiozmq
 import yaml
+from socket import gethostbyname, gethostname
+import signal
 
 class GetAudio:
     """ Sends volume over a socket.
@@ -52,12 +54,30 @@ class GetAudio:
         self.p = pyaudio.PyAudio()
         self.device_set = False
         self.device_info = {}
-        self.default_frames = cfg["stream"]["defaultframes"]
-        self.ip = cfg["RPC"]["IP"]
+        self.default_frames = cfg["stream"]["defaultframes"] 
+        self.ip = gethostbyname(gethostname())
         self.port = cfg["RPC"]["port"]
         self.protocol = cfg["RPC"]["protocol"]
         self.chunk = cfg["stream"]["CHUNK"]
         self.device_selection = ""
+
+    def signal_handler(self, sig, frame):
+        """ Graceful shutdown.
+
+        On Ctrl+C close the stream and disconnect from
+        the RPC client.
+        """
+
+        print("Closing RPC stream...")
+        self.rpc_stream.close()
+
+        print("Closing Audiostream...")
+        self.stream.stop_stream()
+        self.stream.close()
+
+        print("Stopping PyAudio...")
+        self.p.terminate()
+        sys.exit(0)
 
     def default_supported_device(self, device_set):
         """ Checks to see default device is supported.
@@ -175,7 +195,7 @@ class GetAudio:
         return self.stream
 
     async def do(self, ip, port, protocol, stream, chunk):
-        rpc_stream = await aiozmq.stream.create_zmq_stream(
+        self.rpc_stream = await aiozmq.stream.create_zmq_stream(
             zmq_type=zmq.PUB, # pylint: disable=no-member
             bind=protocol+'://'+str(ip)+':'+str(port),
         )
@@ -188,16 +208,17 @@ class GetAudio:
             
             # Use Chr isn't the best. Best is to make a struct in the future.
             msg = [chr(output).encode()]
-            print(msg[0])
-            rpc_stream.write(msg)
+            self.rpc_stream.write(msg)
 
     def main(self): 
+        signal.signal(signal.SIGINT, self.signal_handler)
         """ Sends volume over a socket.
         
         Loopsback the audio from the output device.
         reads the stream and gets a EMS value which
         is then sent over a RPC stream.
-        """       
+        """
+
         self.device_info, self.device_set = self.default_supported_device(self.device_set)
 
         if self.device_set == False:
@@ -206,8 +227,10 @@ class GetAudio:
         if self.device_set == False:
             self.no_devices_found()
 
-        print("Device Found: " + str(self.device_set))
-        print("Device Info: " + str(self.device_info))
+        print("\nRPC Stream Information:\n")
+        print("\t"+"RPC Stream State: Active")
+        print("\t"+"Host IP Address: " +self.ip+":"+str(self.port))
+        print("\t"+"Loopback Device: "+str(self.device_info["name"])+"\n")
 
         self.stream = self.open_stream(self.device_info, self.default_frames)
 

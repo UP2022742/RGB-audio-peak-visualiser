@@ -4,7 +4,7 @@ import aiozmq
 import zmq
 import yaml
 
-with open("main.yml", "r") as ymlfile:
+with open("listener.yml", "r") as ymlfile:
     cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
 protocol = cfg["RPC"]["protocol"]
