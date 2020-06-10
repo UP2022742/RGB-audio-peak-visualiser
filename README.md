@@ -1,4 +1,4 @@
-# RGB Audio Peak Visuliser
+<h1 style="color: red;">RGB Audio Peak Visuliser</h1>
 <p>A python application that loopbacks the playback output to create a visualiser with RGB strips.</p>
 
 <h1>Requirements</h1>
@@ -22,12 +22,12 @@ pip install -r requirements.txt
 <pre>
 // Regards the output stream.
 stream:  
-  
-  // Recorder information.
-  defaultframes: 512
 
-  // Determined by the output Hz by your chosen sample rate.
-  CHUNK: 2048
+    // Recorder information.
+    defaultframes: 512
+
+    // Determined by the output Hz by your chosen sample rate.
+    CHUNK: 2048
 
 ...
 </pre>
@@ -76,11 +76,11 @@ pip install -r requirements.txt
 // Regards the output stream.
 stream:  
   
-  // Recorder information.
-  defaultframes: 512
-  
-  // Determined by the output Hz by your chosen sample rate.
-  CHUNK: 2048
+    // Recorder information.
+    defaultframes: 512
+
+    // Determined by the output Hz by your chosen sample rate.
+    CHUNK: 2048
   
 ...
 </pre>
