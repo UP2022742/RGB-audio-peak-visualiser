@@ -11,37 +11,37 @@
 <h1>Usage</h1>
 <h3>Host</h3>
 <p>1. Clone the repo or download as zip and extract the files.</p>
-<pre> bash
+<pre>
 git clone https://github.com/mcrrobinson/RGB-audio-peak-visualiser.git
 </pre>
 <p>2. Install depdencenies.</p>
-<pre> bash
+<pre>
 pip install -r requirements.txt
 </pre>
 <p>3. Adjust the configuration as you wish.</p>
-<pre>yaml
-# Regards the output stream.
+<pre>
+// Regards the output stream.
 stream:
 
-  # Recorder information.
+  // Recorder information.
   defaultframes: 512
 
-  # Determined by the output Hz by your chosen sample rate.
+  // Determined by the output Hz by your chosen sample rate.
   CHUNK: 2048
 
 ...
 </pre>
 <p>4. Open a terminal and run the application.</p>
 <h6>Windows</h6>
-<pre> bash
+<pre>
 python main.py
 </pre>
 <h6>Linux</h6>
-<pre> bash
+<pre>
 python ./main.py
 </pre>
 <p>5. If you did everything correctly you should see the following.</p>
-<pre> python
+<pre>
 RPC Stream Information:
 
         RPC Stream State: Active
@@ -68,29 +68,29 @@ listener.yaml
 requirements.txt
 </pre>
 <p>2. Install depdencenies.</p>
-<pre> bash
+<pre>
 pip install -r requirements.txt
 </pre>
 <p>3. Adjust the configuration as you wish.</p>
-<pre> yaml
+<pre>
 # Regards the output stream.
 stream:
 
-  # Recorder information.
+  // Recorder information.
   defaultframes: 512
 
-  # Determined by the output Hz by your chosen sample rate.
+  // Determined by the output Hz by your chosen sample rate.
   CHUNK: 2048
 
 ...
 </pre>
 <p>4. Open a terminal and run the application.</p>
 <h6>Windows</h6>
-<pre> bash
+<pre>
 python main.py
 </pre>
 <h6>Linux</h6>
-<pre> bash
+<pre>
 python ./main.py
 </pre>
 <h3>Releases</h3>
@@ -99,7 +99,7 @@ python ./main.py
 <h3>FAQ</h3>
 <p>1. I setup everything correctly but I am not receiving anything on the Raspberry Pi, why?</p>
 <p>Make sure you have tested to see if you can ping the host with the port with the command below, change the IP and Port to what you are using in the configuration files.</p>
-<pre> bash
+<pre>
 ping *host_ip* -p *host_port*
 </pre>
 <p>If you are unable to ping the client, modify your new rule to allow "Any" protocol on that port to see if that improves it.</p>
