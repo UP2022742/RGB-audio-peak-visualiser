@@ -1,6 +1,4 @@
-<div style="font-size: 50px">
-<span style="color:#ff3d00">R</span><span style="color:#ff7a00">G</span><span style="color:#ffb700">B</span><span style="color:#fff400">-</span><span style="color:#ccff00">a</span><span style="color:#8eff00">u</span><span style="color:#51ff00">d</span><span style="color:#14ff00">i</span><span style="color:#00ff28">o</span><span style="color:#00ff66">-</span><span style="color:#00ffa3">p</span><span style="color:#00ffe0">e</span><span style="color:#00e0ff">a</span><span style="color:#00a3ff">k</span><span style="color:#0065ff">-</span><span style="color:#0028ff">v</span><span style="color:#1400ff">i</span><span style="color:#5100ff">s</span><span style="color:#8e00ff">u</span><span style="color:#cb00ff">a</span><span style="color:#ff00f4">l</span><span style="color:#ff00b7">i</span><span style="color:#ff007a">s</span><span style="color:#ff003d">e</span><span style="color:#ff0000">r</span>
-</div>
+# RGB Audio Peak Visuliser
 <p>A python application that loopbacks the playback output to create a visualiser with RGB strips.</p>
 
 <h1>Requirements</h1>
@@ -35,15 +33,15 @@ stream:
 ```
 <p>4. Open a terminal and run the application.</p>
 <h6>Windows</h6>
-```bash
+``` bash
 python main.py
 ```
 <h6>Linux</h6>
-```bash
+``` bash
 python ./main.py
 ```
 <p>5. If you did everything correctly you should see the following.</p>
-```python
+``` python
 RPC Stream Information:
 
         RPC Stream State: Active
