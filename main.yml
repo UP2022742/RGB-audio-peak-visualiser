@@ -1,0 +1,20 @@
+# Regards the output stream.
+stream:
+
+  # Recorder information.
+  defaultframes: 512
+
+  # Determined by the output Hz by your chosen sample rate.
+  CHUNK: 2048
+
+# Regarding the RPC connection.
+RPC:
+
+  # The IP address of the computer hosting.
+  IP: "192.168.1.222"
+
+  # The port you have allowed the communication with in the firewall.
+  port: 5556
+
+  # Protocol for communication, this will be changed to UDP in the future.
+  protocol: "tcp"
