@@ -16,24 +16,48 @@ class GetAudio:
     Args:
         p : A variable to access PyAudio functions.
 
-        device_selection : Takes the users input
-        and converts it to an integer so it can
-        be validated against.
+        device_set : Used to check weather a valid
+        device has been applied yet.
 
         device_info : Contains the array of 
         hardware information that is required
         when setting up the audio stream.
+
+        default_frames : Audio sampling rate.
+        (default: 512)
+
+        ip : The IP of the computer in which is
+        hosting this application. Needed to bind
+        a socket. (default: 192.168.1.222)
+
+        port : The port in which the RPC is going
+        to connect to, this must be allowed on the
+        firewall for Windows computers. 
+        (default: 5556)
+
+        protocol : The protocol used to connect to
+        the server, this can't be changed without
+        changing the code as UDP isn't supported yet.
+        (default: TCP)
+
+        chunk : Number of frames signal is split by
+        typically the smaller the faster the code
+        runs (default: 2048)
+
+        device_selection : Takes the users input
+        and converts it to an integer so it can
+        be validated against.
     """
     def __init__(self):
         self.p = pyaudio.PyAudio()
         self.device_set = False
         self.device_info = {}
-        self.valid_array = []
         self.default_frames = cfg["stream"]["defaultframes"]
         self.ip = cfg["RPC"]["IP"]
         self.port = cfg["RPC"]["port"]
         self.protocol = cfg["RPC"]["protocol"]
         self.chunk = cfg["stream"]["CHUNK"]
+        self.device_selection = ""
 
     def default_supported_device(self, device_set):
         """ Checks to see default device is supported.
