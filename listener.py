@@ -3,24 +3,78 @@ import asyncio
 import aiozmq
 import zmq
 import yaml
+import signal
+import sys
 
-with open("main.yml", "r") as ymlfile:
-    cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
+class GetAudio:
+    def __init__(self):
+        """ Sends volume over a socket.
+        
+        Loopsback the audio from the output device.
+        reads the stream and gets a EMS value which
+        is then sent over a RPC stream.
 
-protocol = cfg["RPC"]["protocol"]
-IP = cfg["RPC"]["IP"]
-port = cfg["RPC"]["port"]
+        Args:
+            ip : The IP of the computer in which is
+            hosting this application. Needed to bind
+            a socket. (default: 192.168.1.222)
 
-async def do():
-    stream = await aiozmq.stream.create_zmq_stream(
-        zmq_type=zmq.SUB, # pylint: disable=no-member
-        connect=protocol+'://'+str(IP)+':'+str(port),
-    )
-    stream.transport.subscribe(b'')
+            port : The port in which the RPC is going
+            to connect to, this must be allowed on the
+            firewall for Windows computers. 
+            (default: 5556)
 
-    while True:
-        msg = await stream.read()
-        print(ord(msg[0]))
+            protocol : The protocol used to connect to
+            the server, this can't be changed without
+            changing the code as UDP isn't supported yet.
+            (default: TCP)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(do())
+            rpc_stream : the configuration in which the
+            rpc stream is set.
+        """
+        self.protocol = cfg["RPC"]["protocol"]
+        self.IP = cfg["RPC"]["IP"]
+        self.port = cfg["RPC"]["port"]
+        self.rpc_stream = 0
+
+    def signal_handler(self, sig, frame):
+        """ Graceful shutdown.
+
+        On Ctrl+C close the stream and disconnect from
+        the RPC client.
+        """
+
+        print("Closing RPC stream...")
+        self.rpc_stream.close()
+        sys.exit(0)
+
+    def main(self):
+        """ Recieves volume over socket.
+        
+        Receives the stream data converts the bytes
+        object to a int and displays the integer.
+
+        Args:
+            msg : Reads the RPC stream, then gets
+            turned from a byte object to a integer
+            then displayed.
+        """
+        signal.signal(signal.SIGINT, self.signal_handler)
+        async def do():
+            self.rpc_stream = await aiozmq.stream.create_zmq_stream(
+                zmq_type=zmq.SUB, # pylint: disable=no-member
+                connect=self.protocol+'://'+str(self.IP)+':'+str(self.port),
+            )
+            self.rpc_stream.transport.subscribe(b'')
+
+            while True:
+                msg = await self.rpc_stream.read()
+                print(ord(msg[0]))
+
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(do())
+
+if __name__ == "__main__":
+    with open("listener.yml", "r") as ymlfile:
+        cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
+    GetAudio().main()
