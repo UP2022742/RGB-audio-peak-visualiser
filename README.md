@@ -11,15 +11,15 @@
 <h1>Usage</h1>
 <h3>Host</h3>
 <p>1. Clone the repo or download as zip and extract the files.</p>
-```bash
+<pre> bash
 git clone https://github.com/mcrrobinson/RGB-audio-peak-visualiser.git
-```
+</pre>
 <p>2. Install depdencenies.</p>
-```bash
+<pre> bash
 pip install -r requirements.txt
-```
+</pre>
 <p>3. Adjust the configuration as you wish.</p>
-```yaml
+<pre>yaml
 # Regards the output stream.
 stream:
 
@@ -30,24 +30,24 @@ stream:
   CHUNK: 2048
 
 ...
-```
+</pre>
 <p>4. Open a terminal and run the application.</p>
 <h6>Windows</h6>
-``` bash
+<pre> bash
 python main.py
-```
+</pre>
 <h6>Linux</h6>
-``` bash
+<pre> bash
 python ./main.py
-```
+</pre>
 <p>5. If you did everything correctly you should see the following.</p>
-``` python
+<pre> python
 RPC Stream Information:
 
         RPC Stream State: Active
         Host IP Address: *your_ip_address*
         Loopback Device: Speakers (USB Audio CODEC )
-```
+</pre>
 <p>6. Type in Windows Firewall</p>
 <img style="height: 40%; display: block;" src="imgs/f1.jpg">
 <p>7. Goto Advanced Settings</p>
@@ -62,17 +62,17 @@ RPC Stream Information:
 <h3>Client</h3>
 <h5>Raspberry Pi Installation</h5>
 <p>1. SFTP into the Raspberry Pi and copy the following files:</p>
-```
+<pre>
 listener.py
 listener.yaml
 requirements.txt
-```
+</pre>
 <p>2. Install depdencenies.</p>
-```bash
+<pre> bash
 pip install -r requirements.txt
-```
+</pre>
 <p>3. Adjust the configuration as you wish.</p>
-```yaml
+<pre> yaml
 # Regards the output stream.
 stream:
 
@@ -83,25 +83,25 @@ stream:
   CHUNK: 2048
 
 ...
-```
+</pre>
 <p>4. Open a terminal and run the application.</p>
 <h6>Windows</h6>
-```bash
+<pre> bash
 python main.py
-```
+</pre>
 <h6>Linux</h6>
-```bash
+<pre> bash
 python ./main.py
-```
+</pre>
 <h3>Releases</h3>
 <p><a id="raw-url" href="https://raw.githubusercontent.com/mcrrobinson/RGB-audio-peak-visualiser/master/main.py">Download Host Zip</a></p>
 <p><a id="raw-url" href="https://raw.githubusercontent.com/mcrrobinson/RGB-audio-peak-visualiser/master/listener.py">Download Client Zip</a></p>
 <h3>FAQ</h3>
 <p>1. I setup everything correctly but I am not receiving anything on the Raspberry Pi, why?</p>
 <p>Make sure you have tested to see if you can ping the host with the port with the command below, change the IP and Port to what you are using in the configuration files.</p>
-```bash
+<pre> bash
 ping *host_ip* -p *host_port*
-```
+</pre>
 <p>If you are unable to ping the client, modify your new rule to allow "Any" protocol on that port to see if that improves it.</p>
 <h3>Plans</h3>
 <p>I plan to release a Audino variation of this software.</p>
