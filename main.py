@@ -1,12 +1,13 @@
 import pyaudio
 import sys
-import numpy as np
+# import numpy as np
 import zmq
 import asyncio
 import aiozmq
 import yaml
 from socket import gethostbyname, gethostname
 import signal
+import audioop
 
 class GetAudio:
     """ Sends volume over a socket.
@@ -58,7 +59,7 @@ class GetAudio:
         self.device_set = False
         self.device_info = {}
         self.default_frames = cfg["stream"]["defaultframes"] 
-        self.ip = gethostbyname(gethostname())
+        self.ip = "192.168.1.214"
         self.port = cfg["RPC"]["port"]
         self.protocol = cfg["RPC"]["protocol"]
         self.chunk = cfg["stream"]["CHUNK"]
@@ -206,12 +207,11 @@ class GetAudio:
 
         # Loop through reading the stream, 
         while True:
-            data = np.frombuffer(stream.read(chunk),dtype=np.int16)
-            peak=np.average(np.abs(data))*10
-            output=int(round(50*peak/2**16))
+            # data = int(round(50*np.average(np.abs(np.frombuffer(stream.read(chunk),dtype=np.int16)))/2**16))
+            data = int(round(audioop.rms(stream.read(chunk), 2)/1000))
             
             # Use Chr isn't the best. Best is to make a struct in the future.
-            msg = [chr(output).encode()]
+            msg = [chr(data).encode()]
             self.rpc_stream.write(msg)
 
     def main(self): 
