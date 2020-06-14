@@ -38,7 +38,11 @@ class GetAudio:
             rpc stream is set.
         """
         self.max_pixels = 300
-        self.pixels = neopixel.NeoPixel(board.D18, self.max_pixels) # pylint: disable=no-member
+        self.pixel_pin = board.D18 # pylint: disable=no-member
+        self.ORDER = neopixel.GRB
+        self.pixels = neopixel.NeoPixel(
+            self.pixel_pin, self.max_pixels, brightness=0.1, auto_write=False, pixel_order=self.ORDER
+        )
         self.protocol = cfg["RPC"]["protocol"]
         self.IP = cfg["RPC"]["IP"]
         self.port = cfg["RPC"]["port"]
@@ -68,6 +72,7 @@ class GetAudio:
             # trans_time = 1
             while(light_index < self.max_pixels and self.lights_active == True):
                 self.pixels[light_index] = (255,255,255)
+                self.pixels.show()
                 light_index += 1
                 if self.output != 0:
 
@@ -78,6 +83,7 @@ class GetAudio:
                     time.sleep(1)
             light_index = 1
             self.pixels.fill((0,0,0))
+            self.pixels.show()
             
 
     async def do(self):

@@ -37,7 +37,12 @@ class GetAudio:
             rpc_stream : the configuration in which the
             rpc stream is set.
         """
-        self.pixels = neopixel.NeoPixel(board.D18, 30) # pylint: disable=no-member
+        self.max_pixels = 300
+        self.pixel_pin = board.D18 # pylint: disable=no-member
+        self.ORDER = neopixel.GRB
+        self.pixels = neopixel.NeoPixel(
+            self.pixel_pin, self.max_pixels, brightness=0.1, auto_write=False, pixel_order=self.ORDER
+        )
         self.protocol = cfg["RPC"]["protocol"]
         self.IP = cfg["RPC"]["IP"]
         self.port = cfg["RPC"]["port"]
@@ -60,8 +65,10 @@ class GetAudio:
     def onetwothree(self):
         while self.lights_active: 
             self.pixels.fill((0,0,0))
+            self.pixels.show()
             for i in range(0, self.output / 100):
                 self.pixels[i] = (25, 50, 75)
+                self.pixels.show()
 
     async def do(self):
             self.rpc_stream = await aiozmq.stream.create_zmq_stream(
