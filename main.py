@@ -8,6 +8,7 @@ import yaml
 from socket import gethostbyname, gethostname
 import signal
 import audioop
+import struct
 
 class GetAudio:
     """ Sends volume over a socket.
@@ -208,11 +209,10 @@ class GetAudio:
         # Loop through reading the stream, 
         while True:
             # data = int(round(50*np.average(np.abs(np.frombuffer(stream.read(chunk),dtype=np.int16)))/2**16))
-            data = int(round(audioop.rms(stream.read(chunk), 2)/1000))
-            
-            # Use Chr isn't the best. Best is to make a struct in the future.
-            msg = [chr(data).encode()]
-            self.rpc_stream.write(msg)
+            data = audioop.rms(stream.read(chunk), 2)
+
+            # Writes the struct with 65000 as the highest value, easy.
+            self.rpc_stream.write([struct.pack('!H', data)])
 
     def main(self): 
         signal.signal(signal.SIGINT, self.signal_handler)

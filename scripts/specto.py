@@ -9,6 +9,7 @@ import time
 import threading
 import board
 import neopixel
+import struct
 
 class GetAudio:
     def __init__(self):
@@ -59,7 +60,7 @@ class GetAudio:
     def onetwothree(self):
         while self.lights_active: 
             self.pixels.fill((0,0,0))
-            for i in range(0, self.output):
+            for i in range(0, self.output / 100):
                 self.pixels[i] = (25, 50, 75)
 
     async def do(self):
@@ -71,8 +72,7 @@ class GetAudio:
 
             while True:
                 msg = await self.rpc_stream.read()
-                self.output = ord(msg[0])
-                # print("▉"*ord(msg[0]))
+                self.output = struct.unpack('!H', msg[0])[0]
 
     def main(self):
         """ Recieves volume over socket.

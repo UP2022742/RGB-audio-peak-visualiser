@@ -37,8 +37,7 @@ class GetAudio:
             rpc_stream : the configuration in which the
             rpc stream is set.
         """
-        self.max_pixels = 300
-        self.pixels = neopixel.NeoPixel(board.D18, self.max_pixels) # pylint: disable=no-member
+        self.pixels = neopixel.NeoPixel(board.D18, 300) # pylint: disable=no-member
         self.protocol = cfg["RPC"]["protocol"]
         self.IP = cfg["RPC"]["IP"]
         self.port = cfg["RPC"]["port"]
@@ -58,27 +57,12 @@ class GetAudio:
         self.lights_active = False
         sys.exit(0)
 
-    def running_rabbit(self):
-        while self.lights_active:
-
-            # Starts the sleep on one second per light, louder the song the reciprocal
-            # is dedicted meaning faster transition. Need to get the structs working on
-            # the stream first through.
-            light_index = 1
-            # trans_time = 1
-            while(light_index < self.max_pixels and self.lights_active == True):
-                self.pixels[light_index] = (255,255,255)
-                light_index += 1
-                if self.output != 0:
-
-                    # I need a logarithmic value here. Volume starts off fast then drops off.
-                    # Seems to drop around the value 60ish.
-                    time.sleep(1 / (self.output/60))
-                else:
-                    time.sleep(1)
-            light_index = 1
-            self.pixels.fill((0,0,0))
-            
+    def onetwothree(self):
+        while self.lights_active: 
+            if self.output > 4000:
+                self.pixels.fill((255,255,255))
+            else:
+                self.pixels.fill((0,0,0))
 
     async def do(self):
             self.rpc_stream = await aiozmq.stream.create_zmq_stream(
@@ -106,7 +90,7 @@ class GetAudio:
 
         # Create new light thread.
         try:
-            lighting_sequence = threading.Thread(target=self.running_rabbit)
+            lighting_sequence = threading.Thread(target=self.onetwothree)
             lighting_sequence.start()
         except:
             print("Error: unable to start thread")

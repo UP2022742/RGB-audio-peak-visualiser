@@ -2,8 +2,8 @@ import board
 import neopixel
 import time
 
-pixel_pin = board.D18
-num_pixels = 50
+pixel_pin = board.D18 # pylint: disable=no-member
+num_pixels = 300
 ORDER = neopixel.GRB
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.3, auto_write=False)
 

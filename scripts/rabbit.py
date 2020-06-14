@@ -9,6 +9,7 @@ import time
 import threading
 import board
 import neopixel
+import struct
 
 class GetAudio:
     def __init__(self):
@@ -56,19 +57,34 @@ class GetAudio:
         self.rpc_stream.close()
         self.lights_active = False
         sys.exit(0)
+    
+    def color_loop(self, i):
+        switcher={
+            0:(255,0,0), # Red
+            1:(255,165,0), # Orange
+            2:(255,255,0), # Yellow
+            3:(0,255,0), # Green
+            4:(0,0,255), # Blue
+            5:(75,0,130), # Indigo
+            6:(238,130,221), # Violet
+        }
+        return switcher.get(i,"[ERROR] INVALID COLOUR")
 
     def running_rabbit(self):
+        rgb_loop = 0
         while self.lights_active:
 
             # Starts the index on the first light. As song gets louder keeps increasing.
             light_index = 1
             while(light_index < self.max_pixels and self.lights_active == True):
-                print(light_index)
-                if self.output > 4:
-                    self.pixels[light_index] = (0,0,255)
+                if self.output > 4000:
+                    self.pixels[light_index] = self.color_loop(rgb_loop)
                     time.sleep(0.001)
                     light_index += 1
+
             light_index = 1
+            if rgb_loop < 6: rgb_loop += 1
+            else: rgb_loop = 1
             self.pixels.fill((0,0,0))
             
 
@@ -81,8 +97,7 @@ class GetAudio:
 
             while True:
                 msg = await self.rpc_stream.read()
-                self.output = ord(msg[0])
-                # print("▉"*ord(msg[0]))
+                self.output = struct.unpack('!H', msg[0])[0]
 
     def main(self):
         """ Recieves volume over socket.
