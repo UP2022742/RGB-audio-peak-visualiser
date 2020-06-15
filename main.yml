@@ -5,7 +5,7 @@ stream:
   defaultframes: 512
 
   # Determined by the output Hz by your chosen sample rate.
-  CHUNK: 2048
+  CHUNK: 1024
 
 # Regarding the RPC connection.
 RPC:

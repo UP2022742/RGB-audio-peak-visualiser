@@ -5,6 +5,11 @@ import zmq
 import yaml
 import signal
 import sys
+import time
+import threading
+import board
+import neopixel
+import struct
 
 class GetAudio:
     def __init__(self):
@@ -32,10 +37,18 @@ class GetAudio:
             rpc_stream : the configuration in which the
             rpc stream is set.
         """
+        self.max_pixels = 300
+        self.pixel_pin = board.D18 # pylint: disable=no-member
+        self.ORDER = neopixel.GRB
+        self.pixels = neopixel.NeoPixel(
+            self.pixel_pin, self.max_pixels, brightness=0.1, auto_write=False, pixel_order=self.ORDER
+        )
         self.protocol = cfg["RPC"]["protocol"]
         self.IP = cfg["RPC"]["IP"]
         self.port = cfg["RPC"]["port"]
         self.rpc_stream = 0
+        self.output = 0
+        self.lights_active = True
 
     def signal_handler(self, sig, frame):
         """ Graceful shutdown.
@@ -44,9 +57,30 @@ class GetAudio:
         the RPC client.
         """
 
-        print("Closing RPC stream...")
+        print("\nClosing RPC stream...")
         self.rpc_stream.close()
+        self.lights_active = False
         sys.exit(0)
+
+    def onetwothree(self):
+        while self.lights_active: 
+            if self.output > 4000:
+                self.pixels.fill((255,255,255))
+                self.pixels.show()
+            else:
+                self.pixels.fill((0,0,0))
+                self.pixels.show()
+
+    async def do(self):
+            self.rpc_stream = await aiozmq.stream.create_zmq_stream(
+                zmq_type=zmq.SUB, # pylint: disable=no-member
+                connect=self.protocol+'://'+str(self.IP)+':'+str(self.port),
+            )
+            self.rpc_stream.transport.subscribe(b'')
+
+            while True:
+                msg = await self.rpc_stream.read()
+                self.output = struct.unpack('!H', msg[0])[0]
 
     def main(self):
         """ Recieves volume over socket.
@@ -60,19 +94,17 @@ class GetAudio:
             then displayed.
         """
         signal.signal(signal.SIGINT, self.signal_handler)
-        async def do():
-            self.rpc_stream = await aiozmq.stream.create_zmq_stream(
-                zmq_type=zmq.SUB, # pylint: disable=no-member
-                connect=self.protocol+'://'+str(self.IP)+':'+str(self.port),
-            )
-            self.rpc_stream.transport.subscribe(b'')
 
-            while True:
-                msg = await self.rpc_stream.read()
-                print(ord(msg[0]))
+        # Create new light thread.
+        try:
+            lighting_sequence = threading.Thread(target=self.onetwothree)
+            lighting_sequence.start()
+        except:
+            print("Error: unable to start thread")
 
+        # Start recording stream
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(do())
+        loop.run_until_complete(self.do())
 
 if __name__ == "__main__":
     with open("listener.yml", "r") as ymlfile:
