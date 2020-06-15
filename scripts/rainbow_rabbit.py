@@ -61,16 +61,40 @@ class GetAudio:
         self.rpc_stream.close()
         self.lights_active = False
         sys.exit(0)
+    
+    def color_loop(self, i):
+        switcher={
+            0:(255,0,0), # Red
+            1:(255,165,0), # Orange
+            2:(255,255,0), # Yellow
+            3:(0,255,0), # Green
+            4:(0,0,255), # Blue
+            5:(75,0,130), # Indigo
+            6:(238,130,221), # Violet
+        }
+        return switcher.get(i,"[ERROR] INVALID COLOUR")
 
-    def onetwothree(self):
-        while self.lights_active: 
+    def wheel(self, pos):
+            if pos < 0 or pos > 255:
+                return (0, 0, 0)
+            if pos < 85:
+                return (255 - pos * 3, pos * 3, 0)
+            if pos < 170:
+                pos -= 85
+                return (0, 255 - pos * 3, pos * 3)
+            pos -= 170
+            return (pos * 3, 0, 255 - pos * 3)
+    
+    def running_rabbit(self):
+        while self.lights_active:
             if self.output > 4000:
-                self.pixels.fill((255,255,255))
-                self.pixels.show()
-            else:
-                self.pixels.fill((0,0,0))
-                self.pixels.show()
-
+                for j in range(255):
+                    for i in range(self.max_pixels):
+                        rc_index = (i * 256 // self.max_pixels) + j
+                        self.pixels[i] = self.wheel(rc_index & 255)
+                    self.pixels.show()
+                    time.sleep(0.001)
+            
     async def do(self):
             self.rpc_stream = await aiozmq.stream.create_zmq_stream(
                 zmq_type=zmq.SUB, # pylint: disable=no-member
@@ -97,7 +121,7 @@ class GetAudio:
 
         # Create new light thread.
         try:
-            lighting_sequence = threading.Thread(target=self.onetwothree)
+            lighting_sequence = threading.Thread(target=self.running_rabbit)
             lighting_sequence.start()
         except:
             print("Error: unable to start thread")
@@ -111,4 +135,4 @@ if __name__ == "__main__":
         cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
     GetAudio().main()
 
-    # WORKS WELL, JUST NEEDS SOME SORT OF PATTERNS NOW
+    # WORKS ISH, DOESN'T HAVE THE RUN ALTHOUGH THE SCRIPT ONLY RUNS WITH HIGH VOLUME. THE FOR LOOP IS SLOW THOUGH MEANING IT TAKES A WHILE TO STOP SOMETIMES.

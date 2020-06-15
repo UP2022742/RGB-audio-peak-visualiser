@@ -38,7 +38,7 @@ class GetAudio:
             rpc stream is set.
         """
         self.max_pixels = 300
-        self.pixel_pin = board.D18
+        self.pixel_pin = board.D18 # pylint: disable=no-member
         self.ORDER = neopixel.GRB
         self.pixels = neopixel.NeoPixel(
             self.pixel_pin, self.max_pixels, brightness=0.1, auto_write=False, pixel_order=self.ORDER
@@ -131,3 +131,5 @@ if __name__ == "__main__":
     with open("listener.yml", "r") as ymlfile:
         cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
     GetAudio().main()
+
+    # WORKS PERFECTLY.

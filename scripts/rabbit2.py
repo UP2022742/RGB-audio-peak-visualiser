@@ -125,3 +125,5 @@ if __name__ == "__main__":
     with open("listener.yml", "r") as ymlfile:
         cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
     GetAudio().main()
+
+    # A NEW MODEL NEEDS TO BE THOUGHT WHEN IT COMES TO THE TIME FRAME SET. HAS POTENTIAL THOUGH.

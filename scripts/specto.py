@@ -62,12 +62,14 @@ class GetAudio:
         self.lights_active = False
         sys.exit(0)
 
+    # This is ineffciient.
     def onetwothree(self):
+        half_view = self.max_pixels // 2
         while self.lights_active: 
             self.pixels.fill((0,0,0))
             self.pixels.show()
-            for i in range(0, self.output / 100):
-                self.pixels[i] = (25, 50, 75)
+            for i in range(0, self.output // 1000):
+                self.pixels[i+half_view] = (25, 50, 75)
                 self.pixels.show()
 
     async def do(self):
@@ -109,3 +111,6 @@ if __name__ == "__main__":
     with open("listener.yml", "r") as ymlfile:
         cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
     GetAudio().main()
+
+    # NEEDS WORK.
+    # SCRIPT INEFFECIENT AND FLASHES USELESSLY 

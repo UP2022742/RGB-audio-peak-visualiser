@@ -5,3 +5,5 @@ num_pixels = 300
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, auto_write=False)
 pixels.fill((0,0,0))
 pixels.show()
+
+# WORKS PERFECTLY.
