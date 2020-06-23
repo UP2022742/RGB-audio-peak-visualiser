@@ -102,6 +102,7 @@ class GetAudio:
             while True:
                 msg = await self.rpc_stream.read()
                 self.output = struct.unpack('!H', msg[0])[0]
+                print(self.output)
 
     def main(self):
         """ Recieves volume over socket.

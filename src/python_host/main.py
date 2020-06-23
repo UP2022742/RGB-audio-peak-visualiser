@@ -60,7 +60,7 @@ class GetAudio:
         self.device_set = False
         self.device_info = {}
         self.default_frames = cfg["stream"]["defaultframes"] 
-        self.ip = "192.168.1.214"
+        self.ip = "192.168.1.106"
         self.port = cfg["RPC"]["port"]
         self.protocol = cfg["RPC"]["protocol"]
         self.chunk = cfg["stream"]["CHUNK"]

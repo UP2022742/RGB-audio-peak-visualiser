@@ -2,7 +2,7 @@
 RPC:
 
   # The IP address of the computer hosting.
-  IP: "192.168.1.214"
+  IP: "192.168.1.106"
 
   # The port you have allowed the communication with in the firewall.
   port: 5556
