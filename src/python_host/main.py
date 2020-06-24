@@ -60,12 +60,13 @@ class GetAudio:
         self.device_set = False
         self.device_info = {}
         self.default_frames = cfg["stream"]["defaultframes"] 
-        self.ip = "192.168.1.106"
+        self.ip = gethostbyname(gethostname())
         self.port = cfg["RPC"]["port"]
         self.protocol = cfg["RPC"]["protocol"]
         self.chunk = cfg["stream"]["CHUNK"]
         self.device_selection = ""
         self.rpc_stream = 0
+        self.uuid = cfg["RPC"]["UUID"]
 
     def signal_handler(self, sig, frame):
         """ Graceful shutdown.
@@ -209,10 +210,10 @@ class GetAudio:
         # Loop through reading the stream, 
         while True:
             # data = int(round(50*np.average(np.abs(np.frombuffer(stream.read(chunk),dtype=np.int16)))/2**16))
-            data = audioop.rms(stream.read(chunk), 2)
+            data = audioop.rms(stream.read(chunk), 2)/10000
 
             # Writes the struct with 65000 as the highest value, easy.
-            self.rpc_stream.write([struct.pack('!H', data)])
+            self.rpc_stream.write([self.uuid.encode(), bytearray(struct.pack('d', data))])
 
     def main(self): 
         signal.signal(signal.SIGINT, self.signal_handler)

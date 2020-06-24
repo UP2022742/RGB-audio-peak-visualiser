@@ -68,7 +68,7 @@ class GetAudio:
         while self.lights_active: 
             self.pixels.fill((0,0,0))
             self.pixels.show()
-            for i in range(0, self.output // 1000):
+            for i in range(0, round(self.output * 50)):
                 self.pixels[i+half_view] = (25, 50, 75)
                 self.pixels.show()
 
@@ -77,11 +77,11 @@ class GetAudio:
                 zmq_type=zmq.SUB, # pylint: disable=no-member
                 connect=self.protocol+'://'+str(self.IP)+':'+str(self.port),
             )
-            self.rpc_stream.transport.subscribe(b'')
+            self.rpc_stream.transport.subscribe(b'A')
 
             while True:
                 msg = await self.rpc_stream.read()
-                self.output = struct.unpack('!H', msg[0])[0]
+                self.output = struct.unpack('d', msg[1])[0]
 
     def main(self):
         """ Recieves volume over socket.

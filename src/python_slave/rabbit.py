@@ -79,15 +79,15 @@ class GetAudio:
         while self.lights_active:
 
             # Starts the index on the first light. As song gets louder keeps increasing.
-            light_index = 1
+            light_index = 0
             while(light_index < self.max_pixels and self.lights_active == True):
-                if self.output > 4000:
+                if self.output > 0.4:
                     self.pixels[light_index] = self.color_loop(rgb_loop)
                     self.pixels.show()
                     time.sleep(0.001)
                     light_index += 1
 
-            light_index = 1
+            light_index = 0
             if rgb_loop < 6: rgb_loop += 1
             else: rgb_loop = 1
             
@@ -97,12 +97,11 @@ class GetAudio:
                 zmq_type=zmq.SUB, # pylint: disable=no-member
                 connect=self.protocol+'://'+str(self.IP)+':'+str(self.port),
             )
-            self.rpc_stream.transport.subscribe(b'')
+            self.rpc_stream.transport.subscribe(b'A')
 
             while True:
                 msg = await self.rpc_stream.read()
-                self.output = struct.unpack('!H', msg[0])[0]
-                print(self.output)
+                self.output = struct.unpack('d', msg[1])[0]
 
     def main(self):
         """ Recieves volume over socket.

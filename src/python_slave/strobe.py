@@ -64,7 +64,7 @@ class GetAudio:
 
     def onetwothree(self):
         while self.lights_active: 
-            if self.output > 4000:
+            if self.output > 0.4:
                 self.pixels.fill((255,255,255))
                 self.pixels.show()
             else:
@@ -76,11 +76,11 @@ class GetAudio:
                 zmq_type=zmq.SUB, # pylint: disable=no-member
                 connect=self.protocol+'://'+str(self.IP)+':'+str(self.port),
             )
-            self.rpc_stream.transport.subscribe(b'')
+            self.rpc_stream.transport.subscribe(b'A')
 
             while True:
                 msg = await self.rpc_stream.read()
-                self.output = struct.unpack('!H', msg[0])[0]
+                self.output = struct.unpack('d', msg[1])[0]
 
     def main(self):
         """ Recieves volume over socket.

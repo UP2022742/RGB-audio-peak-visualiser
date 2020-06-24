@@ -41,7 +41,7 @@ class GetAudio:
         self.pixel_pin = board.D18 # pylint: disable=no-member
         self.ORDER = neopixel.GRB
         self.pixels = neopixel.NeoPixel(
-            self.pixel_pin, self.max_pixels, brightness=0.1, auto_write=False, pixel_order=self.ORDER
+            self.pixel_pin, self.max_pixels, pixel_order=self.ORDER
         )
         self.protocol = cfg["RPC"]["protocol"]
         self.IP = cfg["RPC"]["IP"]
@@ -69,21 +69,18 @@ class GetAudio:
             # is dedicted meaning faster transition. Need to get the structs working on
             # the stream first through.
             light_index = 1
-            # trans_time = 1
             while(light_index < self.max_pixels and self.lights_active == True):
-                self.pixels[light_index] = (255,255,255)
-                self.pixels.show()
-                light_index += 1
-                if self.output != 0:
+                while(self.output != 0 and light_index < self.max_pixels):
+                    self.pixels[light_index] = (255,255,255)
+                    light_index += 1
+                    try:
+                        # THIS SHOULD HAVE A LOG CURVE NOT * 5 so it doesn't reach 1.
+                        time.sleep(1-(self.output*5))
+                    except:
+                        print("HIGHER THAN 1")
 
-                    # I need a logarithmic value here. Volume starts off fast then drops off.
-                    # Seems to drop around the value 60ish.
-                    time.sleep(1 / (self.output/60))
-                else:
-                    time.sleep(1)
             light_index = 1
             self.pixels.fill((0,0,0))
-            self.pixels.show()
             
 
     async def do(self):
@@ -91,11 +88,11 @@ class GetAudio:
                 zmq_type=zmq.SUB, # pylint: disable=no-member
                 connect=self.protocol+'://'+str(self.IP)+':'+str(self.port),
             )
-            self.rpc_stream.transport.subscribe(b'')
+            self.rpc_stream.transport.subscribe(b'A')
 
             while True:
                 msg = await self.rpc_stream.read()
-                self.output = struct.unpack('!H', msg[0])[0]
+                self.output = struct.unpack('d', msg[1])[0]
 
     def main(self):
         """ Recieves volume over socket.

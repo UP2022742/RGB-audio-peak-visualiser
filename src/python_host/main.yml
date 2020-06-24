@@ -9,9 +9,11 @@ stream:
 
 # Regarding the RPC connection.
 RPC:
+  # Add the device UUID
+  UUID: "A"
 
   # The port you have allowed the communication with in the firewall.
-  port: 5556
+  port: 5555
 
   # Protocol for communication, this will be changed to UDP in the future.
   protocol: "tcp"

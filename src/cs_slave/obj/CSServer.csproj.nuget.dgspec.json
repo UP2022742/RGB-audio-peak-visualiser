@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\CSServer\\CSServer.csproj": {}
+    "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\RGB-audio-peak-visualiser\\src\\cs_slave\\CSServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\CSServer\\CSServer.csproj": {
+    "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\RGB-audio-peak-visualiser\\src\\cs_slave\\CSServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\CSServer\\CSServer.csproj",
+        "projectUniqueName": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\RGB-audio-peak-visualiser\\src\\cs_slave\\CSServer.csproj",
         "projectName": "CSServer",
-        "projectPath": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\CSServer\\CSServer.csproj",
+        "projectPath": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\RGB-audio-peak-visualiser\\src\\cs_slave\\CSServer.csproj",
         "packagesPath": "C:\\Users\\M.Robinson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\CSServer\\obj\\",
+        "outputPath": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\RGB-audio-peak-visualiser\\src\\cs_slave\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\M.Robinson\\AppData\\Roaming\\NuGet\\NuGet.Config",
