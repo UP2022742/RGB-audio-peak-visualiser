@@ -47,7 +47,7 @@ namespace Publisher
                 // pubSocket.Options.SendHighWatermark = 0;
                 pubSocket.Bind(PROTOCOL + "://"+ IP +":"+ PORT);
 
-                string new_command = "B";
+                string new_command = "A";
                 while(true){
                     double result = defaultDevice.AudioMeterInformation.MasterPeakValue;
                     byte[] volume = BitConverter.GetBytes(result);

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "My9A9H6FLmOnTgeXEcwAIGLrGx9Fa2rBg0UrkXiy8LLPDP4Mv8tuacC4K+NnKTg49sZvo9WlG/lmnOZ62BrCSA==",
+  "dgSpecHash": "gv41rKxo09UZuNESVP2Oj/ghIbxa8aBttUnI2sR5Z4NJRPGi5U1olkCHdJV9Xs2D+CSYEvJ+xn3sq+rJx8pS0A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\CSClient\\CSClient.csproj",
+  "projectFilePath": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\RGB-audio-peak-visualiser\\src\\cs_host\\CSClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\M.Robinson\\.nuget\\packages\\asyncio\\0.1.69\\asyncio.0.1.69.nupkg.sha512",
     "C:\\Users\\M.Robinson\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
