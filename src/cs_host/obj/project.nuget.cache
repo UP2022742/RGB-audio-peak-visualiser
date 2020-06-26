@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gv41rKxo09UZuNESVP2Oj/ghIbxa8aBttUnI2sR5Z4NJRPGi5U1olkCHdJV9Xs2D+CSYEvJ+xn3sq+rJx8pS0A==",
+  "dgSpecHash": "oNPxIaXFqdqzTUm3mqYXzkLoC9m2dsCtZCizt3gq1lGG+ogs1myPW0HqE3RgknQhd1+DAKUNdsGUNlqKnsCetA==",
   "success": true,
   "projectFilePath": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\RGB-audio-peak-visualiser\\src\\cs_host\\CSClient.csproj",
   "expectedPackageFiles": [
@@ -16,7 +16,10 @@
     "C:\\Users\\M.Robinson\\.nuget\\packages\\system.resources.extensions\\4.7.0\\system.resources.extensions.4.7.0.nupkg.sha512",
     "C:\\Users\\M.Robinson\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\M.Robinson\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
-    "C:\\Users\\M.Robinson\\.nuget\\packages\\system.servicemodel.primitives\\4.4.0\\system.servicemodel.primitives.4.4.0.nupkg.sha512"
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\system.servicemodel.primitives\\4.4.0\\system.servicemodel.primitives.4.4.0.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\3.1.4\\microsoft.netcore.app.runtime.win-x64.3.1.4.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\3.1.4\\microsoft.windowsdesktop.app.runtime.win-x64.3.1.4.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\3.1.4\\microsoft.aspnetcore.app.runtime.win-x64.3.1.4.nupkg.sha512"
   ],
   "logs": []
 }
