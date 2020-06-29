@@ -12,3 +12,10 @@
 <div class="text-purple">
   This text is purple, <a href="#" class="text-inherit">including the link</a>
 </div>
+
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+```
