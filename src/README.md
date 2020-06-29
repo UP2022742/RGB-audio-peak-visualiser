@@ -9,12 +9,6 @@
 <p>The arduino example is preferred as it's much more effecient on performance, power consumption and additioanlly more functionality.</p>
 <h3>Raspberry Pi</h3>
 <p>The raspberry pi is not the reccomended option as it's function is limited and much less efficient for the code than the arduino but if it's for a simple hands on project it works absolutely fine.</p>
-<div class="text-blue mb-2">
-  .text-blue on white
-</div>
-<div class="text-gray-dark mb-2">
-  .text-gray-dark on white
-</div>
-<div class="text-gray mb-2">
-  .text-gray on white
+<div class="text-purple">
+  This text is purple, <a href="#" class="text-inherit">including the link</a>
 </div>
