@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ek0jXLSYuB6VmkObawzLTCe2aaiBVzbX4O8t6b/fzUtWzG+5vbdylwn8imj7Mm+H7qlW7k0QdYfr0qgyMoyfkQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\M.Robinson\\Documents\\Development\\Programming\\RGB-audio-peak-visualiser\\src\\cs_slave\\CSServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\asyncio\\0.1.69\\asyncio.0.1.69.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\netmq\\4.0.0.207\\netmq.4.0.0.207.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\system.net.http.winhttphandler\\4.4.0\\system.net.http.winhttphandler.4.4.0.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\system.private.servicemodel\\4.4.0\\system.private.servicemodel.4.4.0.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\system.reflection.dispatchproxy\\4.4.0\\system.reflection.dispatchproxy.4.4.0.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\system.security.principal.windows\\4.4.0\\system.security.principal.windows.4.4.0.nupkg.sha512",
+    "C:\\Users\\M.Robinson\\.nuget\\packages\\system.servicemodel.primitives\\4.4.0\\system.servicemodel.primitives.4.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,5 @@
+C:\Users\M.Robinson\Documents\Development\Programming\newCPPClient\x64\Debug\newCPPClient.vcxproj.CopyComplete
+C:\Users\M.Robinson\Documents\Development\Programming\RGB-audio-peak-visualiser\src\cpp_slave\x64\Debug\newCPPClient.vcxproj.CopyComplete
+C:\Users\M.Robinson\Documents\Development\Programming\RGB-audio-peak-visualiser\src\cpp_slave\x64\Debug\newCPPClient.exe
+C:\Users\M.Robinson\Documents\Development\Programming\RGB-audio-peak-visualiser\src\cpp_slave\x64\Debug\newCPPClient.pdb
+C:\Users\M.Robinson\Documents\Development\Programming\RGB-audio-peak-visualiser\src\cpp_slave\x64\Debug\libzmq-mt-gd-4_3_3.dll

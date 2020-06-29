@@ -1,0 +1,4 @@
+﻿  Using triplet "x64-windows" from "C:\vcpkg\installed\x64-windows\"
+  main.cpp
+C:\Users\M.Robinson\Documents\Development\Programming\RGB-audio-peak-visualiser\src\cpp_slave\main.cpp(27,30): warning C4101: 'e': unreferenced local variable
+  newCPPClient.vcxproj -> C:\Users\M.Robinson\Documents\Development\Programming\RGB-audio-peak-visualiser\src\cpp_slave\x64\Debug\newCPPClient.exe

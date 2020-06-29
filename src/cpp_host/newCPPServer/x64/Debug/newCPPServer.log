@@ -1,0 +1,4 @@
+﻿  Using triplet "x64-windows" from "C:\vcpkg\installed\x64-windows\"
+  main.cpp
+C:\Users\M.Robinson\Documents\Development\Programming\newCPPServer\newCPPServer\main.cpp(49,30): warning C4101: 'e': unreferenced local variable
+  newCPPServer.vcxproj -> C:\Users\M.Robinson\Documents\Development\Programming\newCPPServer\x64\Debug\newCPPServer.exe
