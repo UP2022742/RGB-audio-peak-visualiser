@@ -5,3 +5,7 @@
 <h1>OSX</h1>
 <p>The client in Windows is written in C++</p>
 <h1>Slaves</h1>
+<h3>Arduino</h3>
+<p>The arduino example is preferred as it's much more effecient on performance, power consumption and additioanlly more functionality.</p>
+<h3>Raspberry Pi</h3>
+<p>The raspberry pi is not the reccomended option as it's function is limited and much less efficient for the code than the arduino but if it's for a simple hands on project it works absolutely fine.</p>
