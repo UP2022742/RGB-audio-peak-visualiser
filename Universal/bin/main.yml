@@ -1,0 +1,19 @@
+# Regards the output stream.
+stream:
+
+  # Recorder information.
+  defaultframes: 512
+
+  # Determined by the output Hz by your chosen sample rate.
+  CHUNK: 1024
+
+# Regarding the RPC connection.
+RPC:
+  # Add the device UUID
+  UUID: "A"
+
+  # The port you have allowed the communication with in the firewall.
+  port: 5555
+
+  # Protocol for communication, this will be changed to UDP in the future.
+  protocol: "tcp"

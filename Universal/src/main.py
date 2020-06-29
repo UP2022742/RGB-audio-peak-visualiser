@@ -1,6 +1,5 @@
 import pyaudio
 import sys
-# import numpy as np
 import zmq
 import asyncio
 import aiozmq
